@@ -1,0 +1,3 @@
+Node.h create a node object for the Linked Tree
+- Node(data, edge_label)
+- addChild()
