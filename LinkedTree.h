@@ -17,6 +17,15 @@ template <typename T> class LinkedTree {
     public:
         LinkedTree() : root(nullptr) {}
 
+        // Destructor: deletes root which recursively deletes all children via Node destructor
+        ~LinkedTree() { delete root; }
+
+        // Set the root of the tree
+        void setRoot(Node<T>* r) { root = r; }
+
+        // Get the root of the tree
+        Node<T>* getRoot() const { return root; }
+
         /*  Preorder Tree Traversal for multiple nodes
             - O(n) time complexities */ 
         void preorder(Node<T>* node) {
