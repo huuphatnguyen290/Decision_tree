@@ -1,18 +1,25 @@
 #include <iostream>
+#include <string>
 
-#include "LinkedTree.h"
-
-void print() {
-    std::cout << std::endl;
-}
-
-template<typename T, typename... Args> void print(T first, Args... args) {
-    std::cout << first << " ";
-    print(args...);
-}
+#include "TreeBuilder.h"
 
 int main() {
-    print("One","Two","Three");
+    std::string filename;
+    std::cout << "Enter tree file name: ";
+    std::cin >> filename;
 
+    LinkedTree<std::string>* tree = TreeBuilder::buildFromFile(filename);
+    if (!tree) {
+        std::cerr << "Failed to build tree from file: " << filename << std::endl;
+        return 1;
+    }
+
+    // Generate the analysis report
+    TreeBuilder::generateReport(tree, "about_tree.txt");
+
+    // Interactive node exploration
+    TreeBuilder::interactiveExplore(tree);
+
+    delete tree;
     return 0;
 }
